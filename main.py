@@ -88,7 +88,7 @@ class TaskManagerApp:
         self.task_name_entry.grid(row=0, column=1, sticky="w", pady=5)
 
         ttk.Label(self.task_form_frame, text="Status:").grid(row=1, column=0, sticky="w")
-        self.task_status_combobox = ttk.Combobox(self.task_form_frame, values=["Do zrobienia", "W trakcie", "Zakończone"], state="readonly", width=27)
+        self.task_status_combobox = ttk.Combobox(self.task_form_frame, values=["Do zrobienia", "W trakcie", "Zakonczone"], state="readonly", width=27)
         self.task_status_combobox.grid(row=1, column=1, sticky="w", pady=5)
 
         ttk.Label(self.task_form_frame, text="Opis zadania:").grid(row=2, column=0, sticky="nw")

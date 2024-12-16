@@ -42,6 +42,15 @@ Aplikacja powinna zapewnić użytkownikowi następujące korzyści:
   - `tasks.json`: Plik JSON przechowujący dane o zadaniach.
 
 ---
+## 5. Jak uruchomić program?
 
-## 5. Podsumowanie
+- **Ściągamy program z Github za pomocą git** - `git clone https://github.com/Karpiuuu/PythonTaskManagerApp`
+- **Doinstalowujemy potrzebne biblioteki** - `pip install sv_ttk`
+- **Uruchamiamy program** - `python main.py`
+
+## 6. Jak uruchomić testy?
+
+- **Uruchomianie testu:** `python -m unittest test_main.py`
+
+## 7. Podsumowanie
 Projekt "Prosty system zarządzania zadaniami" stanowi solidne rozwiązanie dla osób, które chcą efektywnie zarządzać swoimi zadaniami. Dzięki możliwości zapisywania danych, intuicyjnemu interfejsowi oraz wsparciu dla opisów zadań, aplikacja oferuje funkcjonalność przydatną zarówno w życiu codziennym, jak i w pracy zawodowej.
