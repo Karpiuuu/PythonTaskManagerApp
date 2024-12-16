@@ -211,11 +211,23 @@ class TaskManagerApp:
         self.task_description_text.delete(1.0, tk.END)
 
     def load_tasks(self):
-        if os.path.exists(self.tasks_file):
-            with open(self.tasks_file, "r") as file:
-                self.task_data = json.load(file)
-                for task in self.task_data:
-                    self.add_task_to_tree(task["name"], task["status"], task["description"])
+        """Load tasks from the JSON file. Create the file if it doesn't exist."""
+        if not os.path.exists(self.tasks_file):
+            # Create an empty tasks file if it doesn't exist
+            with open(self.tasks_file, "w") as file:
+                json.dump([], file)
+            self.task_data = []
+        else:
+            # Load tasks from the existing file
+            try:
+                with open(self.tasks_file, "r") as file:
+                    self.task_data = json.load(file)
+                    for task in self.task_data:
+                        self.add_task_to_tree(task["name"], task["status"], task["description"])
+            except json.JSONDecodeError:
+                # Handle cases where the file exists but is corrupted or empty
+                self.task_data = []
+                self.save_tasks()  # Save a new, valid empty file
 
     def save_tasks(self):
         with open(self.tasks_file, "w") as file:
