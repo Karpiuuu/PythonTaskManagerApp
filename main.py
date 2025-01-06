@@ -3,7 +3,6 @@ from tkinter import ttk
 import json
 import os
 
-
 class TaskManagerApp:
     def __init__(self, root):
         self.root = root

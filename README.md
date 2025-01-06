@@ -39,6 +39,7 @@ Aplikacja powinna zapewnić użytkownikowi następujące korzyści:
 - **System operacyjny**: Projekt działa na Windows, macOS oraz Linux
 - **Pliki projektu**:
   - `main.py`: Główny plik aplikacji zawierający logikę i interfejs użytkownika.
+  - `test_main.py`: Testy wydajnościowe programu.
   - `tasks.json`: Plik JSON przechowujący dane o zadaniach.
 
 ---
@@ -52,5 +53,5 @@ Aplikacja powinna zapewnić użytkownikowi następujące korzyści:
 
 - **Uruchomianie testu:** `python -m unittest test_main.py`
 
-## 7. Podsumowanie
+## 7 . Podsumowanie
 Projekt "Prosty system zarządzania zadaniami" stanowi solidne rozwiązanie dla osób, które chcą efektywnie zarządzać swoimi zadaniami. Dzięki możliwości zapisywania danych, intuicyjnemu interfejsowi oraz wsparciu dla opisów zadań, aplikacja oferuje funkcjonalność przydatną zarówno w życiu codziennym, jak i w pracy zawodowej.
