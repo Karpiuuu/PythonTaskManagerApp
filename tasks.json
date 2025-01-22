@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Example Task #1",
+        "status": "Do zrobienia",
+        "description": "Example task #1 description"
+    },
+    {
+        "name": "Example Task #3",
+        "status": "Zakonczone",
+        "description": "Example task #3 description"
+    },
+    {
+        "name": "Example Task #2",
+        "status": "W trakcie",
+        "description": "Example task #2 description"
+    }
+]

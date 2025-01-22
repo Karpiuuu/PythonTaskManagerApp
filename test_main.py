@@ -2,7 +2,7 @@ import unittest
 import os
 import json
 from tkinter import Tk
-from main import TaskManagerApp
+from main import TaskManagerApp, Task
 
 
 class TestTaskManagerApp(unittest.TestCase):
@@ -15,7 +15,7 @@ class TestTaskManagerApp(unittest.TestCase):
         self.app.tasks_file = self.test_file
 
         # Ensure the test environment is clean
-        self.app.task_data = []
+        self.app.tasks = []
         if os.path.exists(self.test_file):
             with open(self.test_file, "w") as file:
                 json.dump([], file)
@@ -29,56 +29,59 @@ class TestTaskManagerApp(unittest.TestCase):
     def test_add_task(self):
         """Test adding a task."""
         task_name = "Test Task"
-        task_status = "To Do"
+        task_status = "Do zrobienia"
         task_description = "This is a test task description."
 
         # Add a task
-        self.app.add_task_to_tree(task_name, task_status, task_description)
-        self.app.task_data.append({"name": task_name, "status": task_status, "description": task_description})
+        task = Task(task_name, task_status, task_description)
+        self.app.tasks.append(task)
 
         # Check if the task was added correctly
-        self.assertEqual(len(self.app.task_data), 1)
-        self.assertEqual(self.app.task_data[0]["name"], task_name)
-        self.assertEqual(self.app.task_data[0]["status"], task_status)
-        self.assertEqual(self.app.task_data[0]["description"], task_description)
+        self.assertEqual(len(self.app.tasks), 1)
+        self.assertEqual(self.app.tasks[0].name, task_name)
+        self.assertEqual(self.app.tasks[0].status, task_status)
+        self.assertEqual(self.app.tasks[0].description, task_description)
 
     def test_edit_task(self):
         """Test editing a task."""
         # Add a task
         task_name = "Test Task"
-        task_status = "To Do"
+        task_status = "Do zrobienia"
         task_description = "This is a test task description."
-        self.app.task_data.append({"name": task_name, "status": task_status, "description": task_description})
+        task = Task(task_name, task_status, task_description)
+        self.app.tasks.append(task)
 
         # Edit the task
-        new_status = "In Progress"
+        new_status = "W trakcie"
         new_description = "Updated description."
-        self.app.task_data[0]["status"] = new_status
-        self.app.task_data[0]["description"] = new_description
+        task.status = new_status
+        task.description = new_description
 
         # Check if the changes were applied
-        self.assertEqual(self.app.task_data[0]["status"], new_status)
-        self.assertEqual(self.app.task_data[0]["description"], new_description)
+        self.assertEqual(self.app.tasks[0].status, new_status)
+        self.assertEqual(self.app.tasks[0].description, new_description)
 
     def test_delete_task(self):
         """Test deleting a task."""
         task_name = "Test Task"
-        task_status = "To Do"
+        task_status = "Do zrobienia"
         task_description = "This is a test task description."
-        self.app.task_data.append({"name": task_name, "status": task_status, "description": task_description})
+        task = Task(task_name, task_status, task_description)
+        self.app.tasks.append(task)
 
         # Delete the task
-        self.app.task_data = [task for task in self.app.task_data if task["name"] != task_name]
+        self.app.tasks = [t for t in self.app.tasks if t.name != task_name]
 
         # Check if the list is empty
-        self.assertEqual(len(self.app.task_data), 0)
+        self.assertEqual(len(self.app.tasks), 0)
 
     def test_save_tasks(self):
         """Test saving tasks to a JSON file."""
         task_name = "Test Task"
-        task_status = "To Do"
+        task_status = "Do zrobienia"
         task_description = "This is a test task description."
-        self.app.task_data.append({"name": task_name, "status": task_status, "description": task_description})
+        task = Task(task_name, task_status, task_description)
+        self.app.tasks.append(task)
 
         # Save tasks
         self.app.save_tasks()
@@ -95,8 +98,8 @@ class TestTaskManagerApp(unittest.TestCase):
         """Test loading tasks from a JSON file."""
         # Prepare test data
         data = [
-            {"name": "Task 1", "status": "To Do", "description": "Description of task 1"},
-            {"name": "Task 2", "status": "In Progress", "description": "Description of task 2"}
+            {"name": "Task 1", "status": "Do zrobienia", "description": "Description of task 1"},
+            {"name": "Task 2", "status": "W trakcie", "description": "Description of task 2"}
         ]
         with open(self.test_file, "w") as file:
             json.dump(data, file)
@@ -105,10 +108,10 @@ class TestTaskManagerApp(unittest.TestCase):
         self.app.load_tasks()
 
         # Check if the data was loaded correctly
-        self.assertEqual(len(self.app.task_data), 2)
-        self.assertEqual(self.app.task_data[0]["name"], "Task 1")
-        self.assertEqual(self.app.task_data[1]["status"], "In Progress")
-        self.assertEqual(self.app.task_data[1]["description"], "Description of task 2")
+        self.assertEqual(len(self.app.tasks), 2)
+        self.assertEqual(self.app.tasks[0].name, "Task 1")
+        self.assertEqual(self.app.tasks[1].status, "W trakcie")
+        self.assertEqual(self.app.tasks[1].description, "Description of task 2")
 
 
 if __name__ == "__main__":
